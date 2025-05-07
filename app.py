@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, redirect, url_for
 import numpy as np
 import pandas as pd
 import joblib
@@ -11,8 +11,12 @@ modelo = joblib.load('models/modelo_entrenado.pkl')
 historial_resultados = []
 
 @app.route('/')
-def index():
-    return render_template('index.html', resultado=None, historial=None)
+def redireccion_inicio():
+    return redirect(url_for('inicio'))
+
+@app.route('/inicio')
+def inicio():
+    return render_template('inicio.html')  # Nueva pantalla de bienvenida
 
 @app.route('/predecir', methods=['POST'])
 def predecir():
@@ -63,3 +67,4 @@ def descargar():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
