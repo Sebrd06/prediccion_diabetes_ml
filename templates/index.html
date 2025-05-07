@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Diabetes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4 bg-light">
+    <div class="container">
+        <h2 class="mb-4">🩺 Predicción de Riesgo de Diabetes</h2>
+
+        <form action="/predecir" method="POST" class="row3">
+            <div class="col-md-4"><label>Embarazos</label><input type="number" step="1" name="pregnancies" class="form-control" required></div>
+            <div class="col-md-4"><label>Glucosa</label><input type="number" step="any" name="glucose" class="form-control" required></div>
+            <div class="col-md-4"><label>Presión Arterial</label><input type="number" step="any" name="bloodpressure" class="form-control" required></div>
+            <div class="col-md-4"><label>Espesor de piel</label><input type="number" step="any" name="skinthickness" class="form-control" required></div>
+            <div class="col-md-4"><label>Insulina</label><input type="number" step="any" name="insulin" class="form-control" required></div>
+            <div class="col-md-4"><label>IMC</label><input type="number" step="any" name="bmi" class="form-control" required></div>
+            <div class="col-md-4"><label>Antecedentes Familiares</label><input type="number" step="any" name="pedigree" class="form-control" required></div>
+            <div class="col-md-4"><label>Edad</label><input type="number" step="1" name="age" class="form-control" required></div>
+            <div class="col-12"><button class="btn btn-primary mt-3" type="submit">Predecir</button></div>
+        </form>
+
+        {% if resultado %}
+        <div class="alert alert-info mt-4">
+            <strong>Resultado:</strong> {{ resultado }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
