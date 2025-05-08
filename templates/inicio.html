@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #b0f28d, #c7f4ad);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .contenedor {
+            background-color: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        h1 {
+            color: #00795f;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #00795f;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #005f49;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Bienvenido</h1>
+        <p>Predicción de Riesgo de Diabetes</p>
+        <a href="{{ url_for('formulario') }}" class="btn">Comenzar</a>
+    </div>
+</body>
+</html>

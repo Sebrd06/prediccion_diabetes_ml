@@ -30,7 +30,7 @@ Este proyecto es una aplicación web desarrollada con Flask que permite predecir
 
 ## Funcionalidades actuales
 
-- Formulario HTML para ingresar d médicos.
+- Formulario HTML para ingresar de médicos.
 - Predicción del riesgo de diabetes (resultado binario: Sí / No).
 - Historial de predicciones con todos los datos ingresados.
 - Exportación del historial a archivo Excel.
@@ -46,14 +46,6 @@ README.md # Este archivo
 requirements.txt # Lista de dependencias
 
 
-## Próximas mejoras
-
-- Auenticación de usuarios (login y registro)
-- Visualización de resultados con gráficas interactivas
-- Almacenamiento de datos en base de datos (SQLite o PostgreSQL)
-- Dashboard de estadísticas
-- Despliegue en plataforma como Render o Heroku
-
 ## Cómo ejecutar el proyecto
 
 1. Clona este repositorio:
@@ -67,6 +59,6 @@ cd diabetes-prediction-app
 pip install -r requirements.txt
 
 3. Ejecuta la app:
-python app.py
+python app.py  o  py app.py
 
 4. Abre el enlace en el navegador.
