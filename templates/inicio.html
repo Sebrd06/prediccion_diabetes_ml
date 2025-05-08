@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #a8e063, #56ab2f);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px; /* Añadido padding al body para mejor visualización en pantallas pequeñas */
+            box-sizing: border-box; /* Asegura que el padding no afecte el alto del viewport */
+        }
+
+        .contenedor {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            width: 90%; /* Ajuste para hácer el contenedor más adaptable en pantallas pequeñas */
+            box-sizing: border-box; /* Asegura que el padding no afecte el ancho máximo */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 10px; /* Aumentado un poco el margen inferior */
+            font-size: 36px;
+        }
+
+        h2 {
+            font-weight: normal;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 30px; /* Aumentado un poco el margen inferior */
+            font-size: 18px;
+        }
+
+        p {
+            color: #444;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 45px; /* Aumentado un poco el margen inferior */
+        }
+
+        .btn {
+            background-color: #2e7d32;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out; /* Añadida transición para la transformación */
+            display: inline-block; /* Para que la transformación funcione correctamente */
+        }
+
+        .btn:hover {
+            background-color: #1b5e20;
+            transform: scale(1.05); /* Pequeña animación al pasar el ratón */
+        }
+
+        .imagen {
+            width: 120px; /* Manteniendo el tamaño del icono */
+            margin-bottom: 25px; /* Aumentado un poco el margen inferior */
+            display: block; /* Para centrar la imagen */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png" alt="Ícono de Diabetes" class="imagen">
+
+        <h1>Bienvenido</h1>
+        <h2>Tu salud comienza con una predicción.</h2>
+        <p>
+            ¿Quieres saber si estás en riesgo de desarrollar diabetes?
+            Nuestro sistema analiza tu información médica como edad, IMC, nivel de glucosa, presión arterial e historial familiar,
+            para brindarte una evaluación clara y confiable.
+            ¡Da el primer paso hacia una vida más saludable!
+        </p>
+        <a href="{{ url_for('formulario') }}" class="btn">Comenzar</a>
+    </div>
+</body>
+</html>
