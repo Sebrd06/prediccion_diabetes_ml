@@ -74,6 +74,6 @@ def descargar():
     df.to_excel(export_path, index=False)
     return send_file(export_path, as_attachment=True)
 
-# Ejecutar aplicación
+    # Ejecutar aplicación
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0", port=10000)
