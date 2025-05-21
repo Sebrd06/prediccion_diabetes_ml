@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Ingeniería del Modelo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4"><i class="fas fa-cogs me-2"></i>Ingeniería del Modelo</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-project-diagram me-2"></i>Selección de Algoritmos
+        </div>
+        <div class="card-body">
+            <p>Elegir técnicas adecuadas según el problema de clasificación binaria y los datos disponibles.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            Regresión Logística
+                        </div>
+                        <div class="card-body">
+                            <p>Modelo lineal para problemas de clasificación binaria.</p>
+                            <ul>
+                                <li>Interpretabilidad</li>
+                                <li>Bajo costo computacional</li>
+                                <li>Buen baseline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            Random Forest
+                        </div>
+                        <div class="card-body">
+                            <p>Ensemble de árboles de decisión.</p>
+                            <ul>
+                                <li>Manejo de relaciones no lineales</li>
+                                <li>Robusto a outliers</li>
+                                <li>Importancia de variables</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            XGBoost
+                        </div>
+                        <div class="card-body">
+                            <p>Algoritmo de boosting con alto rendimiento.</p>
+                            <ul>
+                                <li>Alta precisión</li>
+                                <li>Regularización incorporada</li>
+                                <li>Manejo de missing values</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-flask me-2"></i>Proceso de Modelado
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-check-circle text-success me-2"></i>Validación</h5>
+                    <p>Verificar desempeño con datos no utilizados en entrenamiento mediante:</p>
+                    <ul>
+                        <li>Split 70-30</li>
+                        <li>Validación cruzada (k=5)</li>
+                        <li>Métricas de evaluación</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-brain text-primary me-2"></i>Entrenamiento</h5>
+                    <p>Aplicar datos preparados al algoritmo seleccionado:</p>
+                    <ul>
+                        <li>Preprocesamiento pipeline</li>
+                        <li>Entrenamiento paralelizado</li>
+                        <li>Guardado de modelos</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-sliders-h text-warning me-2"></i>Ajuste de Hiperparámetros</h5>
+                    <p>Optimizar configuraciones para mejorar rendimiento:</p>
+                    <ul>
+                        <li>Grid Search</li>
+                        <li>Random Search</li>
+                        <li>Bayesian Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('evaluacion_modelo') }}" class="btn btn-primary">
+            Siguiente: Evaluación del Modelo <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

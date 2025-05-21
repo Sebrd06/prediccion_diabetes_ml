@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Ingeniería de Datos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4"><i class="fas fa-database me-2"></i>Ingeniería de Datos</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-tasks me-2"></i>Proceso de Preparación de Datos
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-3">
+                            <input type="checkbox" class="form-check-input" disabled>
+                        </div>
+                        <div>
+                            <h5>Selección</h5>
+                            <p class="mb-0">Identificar fuentes de datos relevantes para el problema de predicción de diabetes.</p>
+                            <ul class="mt-2">
+                                <li>Dataset Pima Indians Diabetes</li>
+                                <li>Variables clínicas y demográficas</li>
+                                <li>768 registros de pacientes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-3">
+                            <input type="checkbox" class="form-check-input" checked disabled>
+                        </div>
+                        <div>
+                            <h5>Limpieza</h5>
+                            <p class="mb-0">Corregir errores y gestionar valores faltantes en el dataset.</p>
+                            <ul class="mt-2">
+                                <li>Tratamiento de valores nulos</li>
+                                <li>Detección de outliers</li>
+                                <li>Normalización de formatos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-3">
+                            <input type="checkbox" class="form-check-input" disabled>
+                        </div>
+                        <div>
+                            <h5>Transformación</h5>
+                            <p class="mb-0">Crear nuevas características y normalizar datos para el modelo.</p>
+                            <ul class="mt-2">
+                                <li>Escalado de variables numéricas</li>
+                                <li>Creación de características derivadas</li>
+                                <li>Codificación de variables categóricas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-3">
+                            <input type="checkbox" class="form-check-input" disabled>
+                        </div>
+                        <div>
+                            <h5>Documentación</h5>
+                            <p class="mb-0">Registrar todas las transformaciones realizadas en los datos.</p>
+                            <ul class="mt-2">
+                                <li>Diccionario de datos</li>
+                                <li>Registro de preprocesamiento</li>
+                                <li>Metadatos del dataset</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-chart-bar me-2"></i>Visualización de Datos
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Distribución de Variables Clave</h5>
+                    <img src="https://via.placeholder.com/500x300?text=Distribución+de+Variables" alt="Distribución de Variables" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6">
+                    <h5>Correlación entre Variables</h5>
+                    <img src="https://via.placeholder.com/500x300?text=Matriz+de+Correlación" alt="Matriz de Correlación" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('ingenieria_modelo') }}" class="btn btn-primary">
+            Siguiente: Ingeniería del Modelo <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -6,8 +6,10 @@ import os
 
 app = Flask(__name__)
 
+# Cargar el modelo entrenado
 modelo = joblib.load('models/modelo_entrenado.pkl')
 
+# Historial en memoria
 historial_resultados = []
 
 # Redirección desde raíz "/" hacia /inicio
@@ -18,7 +20,7 @@ def redireccion_inicio():
 # Ruta de bienvenida
 @app.route('/inicio')
 def inicio():
-    return render_template('inicio.html')  # Pantalla de bienvenida
+    return render_template('inicio.html')
 
 # Ruta para formulario de predicción
 @app.route('/formulario')
@@ -42,7 +44,6 @@ def predecir():
 
         entrada = np.array([datos])
         prediccion = modelo.predict(entrada)[0]
-
         mensaje = " Riesgo de diabetes detectado" if prediccion == 1 else " No hay riesgo de diabetes"
 
         historial_resultados.append({
@@ -74,6 +75,32 @@ def descargar():
     df.to_excel(export_path, index=False)
     return send_file(export_path, as_attachment=True)
 
-    # Ejecutar aplicación
+# Rutas para otras páginas
+@app.route('/negocio_y_datos')
+def negocio_y_datos():
+    return render_template('negocio_y_datos.html')
+
+@app.route('/ingenieria_datos')
+def ingenieria_datos():
+    return render_template('ingenieria_datos.html')
+
+@app.route('/ingenieria_modelo')
+def ingenieria_modelo():
+    return render_template('ingenieria_modelo.html')
+
+@app.route('/despliegue_modelo')
+def despliegue_modelo():
+    return render_template('despliegue_modelo.html')
+
+@app.route('/evaluacion_modelo')
+def evaluacion_modelo():
+    return render_template('evaluacion_modelo.html')
+
+@app.route('/monitoreo_mantenimiento')
+def monitoreo_mantenimiento():
+    return render_template('monitoreo_mantenimiento.html')
+
+
+# Ejecutar aplicación
 if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port=10000)
+    app.run(debug=True, host="0.0.0.0", port=10000)
