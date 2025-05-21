@@ -19,20 +19,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        
-        .hero-container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 900px;
-            margin: 5vh auto;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
+
         }
         
         .hero-container::before {
@@ -65,16 +52,7 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .logo {
-            width: 120px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05) rotate(-5deg);
+
         }
         
         .title {
@@ -105,9 +83,7 @@
         
         .description {
             color: #444;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
+
         }
         
         .btn-grid {
@@ -175,36 +151,7 @@
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(0, 150, 136, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .main-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 150, 136, 0.4);
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-            color: white;
-        }
-        
-        .feature-icon {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-container {
-                padding: 30px 20px;
-                margin: 20px auto;
-            }
-            
-            .btn-grid {
-                grid-template-columns: 1fr;
-            }
+
         }
     </style>
 </head>
