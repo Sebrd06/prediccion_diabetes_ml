@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Monitoreo y Mantenimiento{% endblock %}
+
+{% block extra_css %}
+<style>
+    .monitor-card {
+        border-left: 5px solid #00796b;
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: #f1f8f6;
+        border-radius: 8px;
+    }
+    .metric-bar {
+        height: 12px;
+        background-color: #b2dfdb;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    .metric-fill {
+        height: 100%;
+        background-color: #00796b;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4"><i class="fas fa-tools me-2"></i>Monitoreo y Mantenimiento</h1>
+
+    <div class="alert alert-info">
+        <p>El monitoreo y mantenimiento permiten asegurarse de que el modelo de predicción siga funcionando correctamente con el tiempo. Esto incluye revisar sus resultados, actualizarlo si cambian los datos y corregir cualquier error que aparezca.</p>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-eye me-2"></i>Revisión de Desempeño
+        </div>
+        <div class="card-body">
+            <p>Se revisan algunas métricas clave del modelo para verificar si mantiene buenos resultados.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Cambio en los datos</h6>
+                    <div class="metric-bar">
+                        <div class="metric-fill" style="width: 20%"></div>
+                    </div>
+                    <small class="text-muted">Última revisión: 15/06/2023</small>
+                </div>
+                <div class="col-md-6">
+                    <h6>Exactitud esta semana</h6>
+                    <div class="metric-bar">
+                        <div class="metric-fill" style="width: 95%"></div>
+                    </div>
+                    <small class="text-muted">Mejora de 2%</small>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h5><i class="fas fa-bug me-2"></i>Errores Detectados</h5>
+                <ul>
+                    <li>Algunas predicciones no fueron coherentes - 12/06/2023</li>
+                    <li>Fallo en la fuente de datos secundaria - 10/06/2023</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <i class="fas fa-wrench me-2"></i>Acciones de Mantenimiento
+        </div>
+        <div class="card-body">
+            <p>Estas tareas ayudan a mantener el modelo actualizado y funcionando correctamente.</p>
+
+            <div class="monitor-card">
+                <h6><i class="fas fa-sync-alt me-2"></i>Reentrenamiento</h6>
+                <p>Próxima fecha: <strong>01/07/2023</strong></p>
+                <p>Datos actualizados hasta: <strong>30/06/2023</strong></p>
+            </div>
+
+            <div class="monitor-card">
+                <h6><i class="fas fa-history me-2"></i>Tareas recientes</h6>
+                <ul>
+                    <li>Ajuste de parámetros - 01/06/2023</li>
+                    <li>Actualización de librerías - 20/05/2023</li>
+                    <li>Revisión del código del sistema - 15/05/2023</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-warning text-dark">
+            <i class="fas fa-flag me-2"></i>Alertas Actuales
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Uso de memoria alto en horas pico</li>
+                <li>3 predicciones recientes no fueron correctas</li>
+                <li>Demora al conectarse a base secundaria</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('despliegue_modelo') }}" class="btn btn-primary">
+            <i class="fas fa-rocket me-2"></i>Ir a Despliegue de Modelo
+        </a>
+    </div>
+</div>
+{% endblock %}
