@@ -2,72 +2,76 @@
 
 {% block title %}Despliegue del Modelo{% endblock %}
 
+{% block extra_head %}
+<style>
+    .section-title {
+        color: #00796b;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+    .custom-card-header {
+        background: linear-gradient(135deg, #00796b 0%, #004d40 100%);
+        color: white;
+        font-weight: 600;
+    }
+    .custom-info {
+        background-color: #e0f2f1;
+        border-left: 5px solid #00796b;
+        padding: 15px;
+        border-radius: 6px;
+    }
+    .custom-btn {
+        background: linear-gradient(45deg, #00796b, #26a69a);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-weight: 500;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    .custom-btn:hover {
+        box-shadow: 0 6px 16px rgba(0, 121, 107, 0.3);
+        color: white;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h1 class="mb-4"><i class="fas fa-rocket me-2"></i>Despliegue del Modelo</h1>
+    <h1 class="section-title"><i class="fas fa-rocket me-2"></i>Despliegue del Modelo</h1>
 
     <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header custom-card-header">
             <i class="fas fa-server me-2"></i>Implementación en Producción
         </div>
         <div class="card-body">
             <p>Integración del modelo validado en el entorno operativo real, asegurando compatibilidad con sistemas existentes y optimizando recursos computacionales.</p>
-            
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h5><i class="fas fa-laptop-code me-2"></i>Arquitectura de Implementación</h5>
-                    <img src="https://via.placeholder.com/500x300?text=Arquitectura+de+Despliegue" alt="Arquitectura" class="img-fluid rounded mb-3">
-                    <ul>
-                        <li>Aplicación Flask para interfaz web</li>
-                        <li>API REST para integraciones</li>
-                        <li>Docker para empaquetado</li>
-                        <li>AWS EC2 para hosting</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <h5><i class="fas fa-bolt me-2"></i>Requisitos Técnicos</h5>
-                    <table class="table table-bordered">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Componente</th>
-                                <th>Especificación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>CPU</td>
-                                <td>2 cores mínimo</td>
-                            </tr>
-                            <tr>
-                                <td>RAM</td>
-                                <td>4GB mínimo</td>
-                            </tr>
-                            <tr>
-                                <td>Storage</td>
-                                <td>10GB SSD</td>
-                            </tr>
-                            <tr>
-                                <td>Python</td>
-                                <td>3.8+</td>
-                            </tr>
-                            <tr>
-                                <td>Librerías</td>
-                                <td>scikit-learn, pandas, Flask</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <h5 class="mt-4"><i class="fas fa-laptop-code me-2"></i>Arquitectura de Implementación</h5>
+
+            <ul>
+                <li>Aplicación Flask para interfaz web</li>
+                <li>API REST para integraciones</li>
+                <li>Docker para empaquetado</li>
+                <li>AWS EC2 para hosting</li>
+            </ul>
+
+            <h5 class="mt-4"><i class="fas fa-server me-2"></i>Entorno de Despliegue Recomendado</h5>
+            <ul>
+                <li> <strong>Servidor Flask local</strong> durante pruebas.</li>
+                <li> <strong>Docker</strong> para portabilidad y aislamiento del entorno.</li>
+                <li> <strong>Despliegue en la nube</strong> con plataformas como Render, Railway, Heroku o AWS EC2.</li>
+                <li> Considerar HTTPS y autenticación básica para entornos reales.</li>
+                <li> Monitoreo simple con logs y herramientas como UptimeRobot.</li>
+            </ul>
         </div>
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header custom-card-header">
             <i class="fas fa-file-alt me-2"></i>Documentación y Capacitación
         </div>
         <div class="card-body">
             <p>Elaboración de manuales técnicos y de usuario, junto con sesiones de formación para el personal que interactuará con el sistema.</p>
-            
             <div class="row mt-4">
                 <div class="col-md-4">
                     <div class="card h-100">
@@ -119,16 +123,14 @@
     </div>
 
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header custom-card-header">
             <i class="fas fa-clipboard-list me-2"></i>Establecimiento de Protocolos
         </div>
         <div class="card-body">
             <p>Definición de procedimientos para el monitoreo continuo, gestión de incidencias y recolección de retroalimentación de usuarios finales.</p>
-            
-            <div class="alert alert-info mt-3">
-                <p>"En la fase de despliegue, el modelo validado se implementa en el entorno de producción e integra con los sistemas existentes. ML-Ops.org destaca que es fundamental contar con mecanismos robustos para recolectar retroalimentación y detectar posibles incidencias en el funcionamiento del sistema."</p>
+            <div class="custom-info mt-3">
+                "En la fase de despliegue, el modelo validado se implementa en el entorno de producción e integra con los sistemas existentes. ML-Ops.org destaca que es fundamental contar con mecanismos robustos para recolectar retroalimentación y detectar posibles incidencias en el funcionamiento del sistema."
             </div>
-            
             <h5 class="mt-4"><i class="fas fa-list-check me-2"></i>Protocolos Clave</h5>
             <ol>
                 <li>Monitoreo de rendimiento en tiempo real</li>
@@ -137,13 +139,12 @@
                 <li>Procedimiento de escalamiento de incidencias</li>
                 <li>Plan de rollback en caso de fallos</li>
             </ol>
-            
             <p class="mt-3">Esta etapa marca la transición del modelo desde un entorno de desarrollo controlado hacia su aplicación práctica, donde generará valor real para la organización.</p>
         </div>
     </div>
 
     <div class="text-center mt-4">
-        <a href="{{ url_for('monitoreo_mantenimiento') }}" class="btn btn-primary">
+        <a href="{{ url_for('monitoreo_mantenimiento') }}" class="custom-btn">
             Siguiente: Monitoreo y Mantenimiento <i class="fas fa-arrow-right ms-2"></i>
         </a>
     </div>
