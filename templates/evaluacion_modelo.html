@@ -1,196 +1,137 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Predicción de Riesgo de Diabetes</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        body {
-            background: linear-gradient(120deg, #e0f7fa, #ffffff);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 1100px;
-            margin: 30px auto; /* Centrar el contenedor en la página */
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        h2 {
-            text-align: center;
-            color: #00796b;
-            font-weight: bold;
-            margin-bottom: 30px; /* Aumentar el margen inferior del título */
-        }
-        label {
-            font-weight: 500;
-            color: #37474f;
-            margin-bottom: 0.5rem; /* Añadir un pequeño margen inferior a las etiquetas */
-            display: block; /* Hacer que las etiquetas ocupen toda la línea */
-        }
-        .form-control {
-            margin-bottom: 1rem; /* Añadir margen inferior a los campos de formulario */
-        }
-        .btn-primary {
-            background-color: #00796b;
-            border-color: #00796b;
-            transition: background-color 0.3s ease; /* Añadir transición al hover */
-        }
-        .btn-primary:hover {
-            background-color: #004d40;
-        }
-        .btn-secondary {
-            background-color: #78909c;
-            border-color: #78909c;
-            transition: background-color 0.3s ease; /* Añadir transición al hover */
-        }
-        .btn-secondary:hover {
-            background-color: #546e7a;
-        }
-        .alert-info {
-            background-color: #e0f2f1;
-            border-color: #b2dfdb;
-            color: #004d40;
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        .btn-success {
-            background-color: #388e3c;
-            border-color: #388e3c;
-            transition: background-color 0.3s ease; /* Añadir transición al hover */
-        }
-        .btn-success:hover {
-            background-color: #2e7d32;
-        }
-        .form-control:focus {
-            border-color: #26a69a;
-            box-shadow: 0 0 0 0.2rem rgba(38, 166, 154, 0.25);
-        }
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(30px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-        .table-responsive {
-            margin-top: 30px;
-        }
-        .table th, .table td {
-            text-align: center;
-        }
-        .table-dark th {
-            background-color: #00695c; /* Un tono más oscuro del primario */
-            color: white;
-        }
-        .form-label-icon {
-            margin-right: 0.5rem;
-        }
-    </style>
-</head>
-<body class="p-4">
-    <div class="container">
-        <h2 class="mb-4"><i class="fas fa-heartbeat me-2"></i>Predicción de Riesgo de Diabetes</h2>
+{% extends "base.html" %}
 
-        <form action="/predecir" method="POST" class="row g-3" id="formulario">
-            <div class="col-md-4">
-                <label for="pregnancies" title="Número de embarazos que ha tenido"><i class="fas fa-user-woman form-label-icon"></i>Embarazos</label>
-                <input type="number" step="1" name="pregnancies" class="form-control" id="pregnancies" required>
-            </div>
-            <div class="col-md-4">
-                <label for="glucose" title="Nivel de glucosa en sangre"><i class="fas fa-tint form-label-icon"></i>Glucosa</label>
-                <input type="number" step="any" name="glucose" class="form-control" id="glucose" required>
-            </div>
-            <div class="col-md-4">
-                <label for="bloodpressure" title="Presión arterial diastólica"><i class="fas fa-heart form-label-icon"></i>Presión Arterial</label>
-                <input type="number" step="any" name="bloodpressure" class="form-control" id="bloodpressure" required>
-            </div>
-            <div class="col-md-4">
-                <label for="skinthickness" title="Espesor del pliegue cutáneo tricipital"><i class="fas fa-ruler-vertical form-label-icon"></i>Espesor de piel</label>
-                <input type="number" step="any" name="skinthickness" class="form-control" id="skinthickness" required>
-            </div>
-            <div class="col-md-4">
-                <label for="insulin" title="Nivel de insulina en sangre"><i class="fas fa-prescription-bottle-alt form-label-icon"></i>Insulina</label>
-                <input type="number" step="any" name="insulin" class="form-control" id="insulin" required>
-            </div>
-            <div class="col-md-4">
-                <label for="bmi" title="Índice de masa corporal"><i class="fas fa-weight form-label-icon"></i>IMC</label>
-                <input type="number" step="any" name="bmi" class="form-control" id="bmi" required>
-            </div>
-            <div class="col-md-4">
-                <label for="pedigree" title="Historial genético (predisposición)"><i class="fas fa-dna form-label-icon"></i>Herencia</label>
-                <input type="number" step="any" name="pedigree" class="form-control" id="pedigree" required>
-            </div>
-            <div class="col-md-4">
-                <label for="age" title="Edad actual en años"><i class="fas fa-birthday-cake form-label-icon"></i>Edad</label>
-                <input type="number" step="1" name="age" class="form-control" id="age" required>
-            </div>
-            <div class="col-12 text-center">
-                <button class="btn btn-primary mt-3 px-4" type="submit"><i class="fas fa-check-circle me-2"></i>Predecir</button>
-                <button class="btn btn-secondary mt-3 px-4 ms-2" type="reset"><i class="fas fa-undo me-2"></i>Limpiar</button>
-            </div>
-        </form>
+{% block title %}Despliegue del Modelo{% endblock %}
 
-        {% if resultado %}
-        <div class="alert alert-info mt-4 text-center">
-            <strong>Resultado:</strong> {{ resultado }}
-        </div>
-        {% endif %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4 text-center text-success"><i class="fas fa-heartbeat me-2"></i>Predicción del Riesgo de Diabetes</h1>
 
-        {% if historial %}
-            <div class="text-center mt-4">
-                <a href="/descargar" class="btn btn-success"><i class="fas fa-download me-2"></i>Exportar resultados a Excel</a>
-            </div>
-
-            <h4 class="mt-5 text-center">Historial de predicciones</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped mt-3">
-                    <thead class="table-dark text-center">
-                        <tr>
-                            <th><i class="fas fa-user-woman"></i></th>
-                            <th><i class="fas fa-tint"></i></th>
-                            <th><i class="fas fa-heart"></i></th>
-                            <th><i class="fas fa-ruler-vertical"></i></th>
-                            <th><i class="fas fa-prescription-bottle-alt"></i></th>
-                            <th><i class="fas fa-weight"></i></th>
-                            <th><i class="fas fa-dna"></i></th>
-                            <th><i class="fas fa-birthday-cake"></i></th>
-                            <th><i class="fas fa-chart-bar"></i></th>
-                        </tr>
-                        <tr>
-                            <th>Embarazos</th>
-                            <th>Glucosa</th>
-                            <th>Presión</th>
-                            <th>Piel</th>
-                            <th>Insulina</th>
-                            <th>IMC</th>
-                            <th>Herencia</th>
-                            <th>Edad</th>
-                            <th>Resultado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for fila in historial %}
-                        <tr>
-                            <td>{{ fila.Pregnancies }}</td>
-                            <td>{{ fila.Glucose }}</td>
-                            <td>{{ fila.BloodPressure }}</td>
-                            <td>{{ fila.SkinThickness }}</td>
-                            <td>{{ fila.Insulin }}</td>
-                            <td>{{ fila.BMI }}</td>
-                            <td>{{ fila.DiabetesPedigree }}</td>
-                            <td>{{ fila.Age }}</td>
-                            <td>{{ fila.Resultado }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
+    <div class="alert alert-success shadow-sm">
+        <h5><i class="fas fa-globe-americas me-2"></i>ODS Asociado: <strong>ODS 3 – Salud y Bienestar</strong></h5>
+        <p>Este proyecto se alinea con los Objetivos de Desarrollo Sostenible de la ONU, específicamente con el objetivo 3, que busca garantizar una vida sana y promover el bienestar para todos en todas las edades.</p>
     </div>
-</body>
-</html>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <i class="fas fa-lightbulb me-2"></i>Justificación del Proyecto
+        </div>
+        <div class="card-body">
+            <p>El aumento en los casos de diabetes tipo 2 ha evidenciado la necesidad urgente de herramientas tecnológicas que ayuden en la detección temprana. Este modelo busca anticiparse a los diagnósticos clínicos a partir de variables médicas y demográficas, como niveles de glucosa, insulina, IMC, presión arterial, edad y antecedentes familiares.</p>
+            <p>El objetivo es claro: brindar un sistema preventivo accesible, fácil de usar y confiable, que empodere a los usuarios y contribuya a decisiones informadas sobre su salud.</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <i class="fas fa-cogs me-2"></i>Implementación del Modelo
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-project-diagram me-2"></i>Arquitectura General</h5>
+                    <img src="https://via.placeholder.com/500x300?text=Arquitectura+Modelo+Diabetes" alt="Arquitectura del modelo" class="img-fluid rounded mb-3">
+                    <ul>
+                        <li>Aplicación web desarrollada con Flask</li>
+                        <li>Modelo de clasificación entrenado con scikit-learn</li>
+                        <li>Interfaz web amigable para ingresar variables clínicas</li>
+                        <li>Despliegue en contenedor Docker y hosting en la nube</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-shield-alt me-2"></i>Aspectos Clave</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Interacción directa con el usuario final</li>
+                        <li class="list-group-item">Predicciones en tiempo real</li>
+                        <li class="list-group-item">Enfoque en accesibilidad y usabilidad</li>
+                        <li class="list-group-item">Fácil integración en entornos clínicos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <i class="fas fa-user-graduate me-2"></i>Documentación y Capacitación
+        </div>
+        <div class="card-body">
+            <p>Una correcta implementación requiere no solo una solución técnica, sino también documentación y formación para quienes interactuarán con el sistema.</p>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-book me-2"></i>Manual Técnico
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Diseño de arquitectura</li>
+                                <li>Instrucciones de despliegue</li>
+                                <li>Mantenimiento del sistema</li>
+                                <li>Protocolos de seguridad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-user me-2"></i>Manual de Usuario
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Guía de uso paso a paso</li>
+                                <li>Ejemplos visuales</li>
+                                <li>FAQs resueltas</li>
+                                <li>Contacto de soporte</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-chalkboard-teacher me-2"></i>Capacitación
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Videos tutoriales</li>
+                                <li>Presentaciones prácticas</li>
+                                <li>Guías rápidas</li>
+                                <li>Acompañamiento inicial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <i class="fas fa-clipboard-check me-2"></i>Protocolos y Buenas Prácticas
+        </div>
+        <div class="card-body">
+            <p>En esta etapa, se definen mecanismos para asegurar el correcto funcionamiento del sistema una vez desplegado, así como la mejora continua del modelo.</p>
+            <div class="alert alert-info mt-3">
+                “La fase de despliegue no es el final, sino el inicio de la vida útil del modelo en producción. Su monitoreo y actualización constante garantizan resultados fiables y sostenibles en el tiempo.”
+            </div>
+
+            <h5 class="mt-4"><i class="fas fa-tools me-2"></i>Protocolos Establecidos</h5>
+            <ol>
+                <li>Monitoreo automático del desempeño del modelo</li>
+                <li>Registro detallado de predicciones</li>
+                <li>Canales abiertos para retroalimentación de usuarios</li>
+                <li>Manejo eficiente de errores y fallos</li>
+                <li>Plan de reversión ante eventos críticos</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{{ url_for('monitoreo_mantenimiento') }}" class="btn btn-lg btn-success shadow">
+            Siguiente: Monitoreo y Mantenimiento <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

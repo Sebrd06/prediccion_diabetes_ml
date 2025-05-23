@@ -2,12 +2,29 @@
 
 {% block title %}Ingeniería de Datos{% endblock %}
 
+{% block extra_head %}
+<style>
+    .bg-verde-custom {
+        background-color: #008578 !important;
+    }
+    .btn-verde-custom {
+        background-color: #008578 !important;
+        color: #fff !important;
+        border: none;
+    }
+    .btn-verde-custom:hover, .btn-verde-custom:focus {
+        background-color: #00695c !important;
+        color: #fff !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h1 class="mb-4"><i class="fas fa-database me-2"></i>Ingeniería de Datos</h1>
 
     <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-success text-white">
             <i class="fas fa-tasks me-2"></i>Proceso de Preparación de Datos
         </div>
         <div class="card-body">
@@ -78,27 +95,28 @@
             </div>
         </div>
     </div>
+    <!-- imagenes -->
 
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-success text-white">
             <i class="fas fa-chart-bar me-2"></i>Visualización de Datos
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <h5>Distribución de Variables Clave</h5>
-                    <img src="https://via.placeholder.com/500x300?text=Distribución+de+Variables" alt="Distribución de Variables" class="img-fluid rounded">
+                    <img src="" alt="Distribución de Variables" class="img-fluid rounded">
                 </div>
                 <div class="col-md-6">
                     <h5>Correlación entre Variables</h5>
-                    <img src="https://via.placeholder.com/500x300?text=Matriz+de+Correlación" alt="Matriz de Correlación" class="img-fluid rounded">
+                    <img src="" alt="Matriz de Correlación" class="img-fluid rounded">
                 </div>
             </div>
         </div>
     </div>
 
     <div class="text-center mt-4">
-        <a href="{{ url_for('ingenieria_modelo') }}" class="btn btn-primary">
+        <a href="{{ url_for('ingenieria_modelo') }}" class="btn btn-success">
             Siguiente: Ingeniería del Modelo <i class="fas fa-arrow-right ms-2"></i>
         </a>
     </div>

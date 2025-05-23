@@ -1,0 +1,66 @@
+/* === Estilos Globales === */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+/* === Contenedor principal === */
+.container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* === Tarjetas === */
+.card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+/* === Encabezado de tarjeta === */
+.card-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* === Títulos internos === */
+h1, h5 {
+    font-weight: 600;
+    color: #212529;
+}
+
+/* === Botones personalizados === */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    border-radius: 50px;
+    padding: 10px 25px;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* === Listas === */
+ul {
+    padding-left: 1.2rem;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* === Checkbox (decorativo) === */
+input[type="checkbox"]:disabled {
+    cursor: default;
+}
+
+/* === Imágenes === */
+img.img-fluid {
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
