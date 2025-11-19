@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>🔧 Admin Dashboard</h2>
+            <p class="text-muted">Accesos rápidos y métricas del sistema</p>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h6 class="card-title">Usuarios</h6>
+                    <p class="display-6">{{ stats.total_usuarios }}</p>
+                    <a href="{{ url_for('admin_panel') }}" class="btn btn-sm btn-primary">Ver usuarios</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h6 class="card-title">Predicciones</h6>
+                    <p class="display-6">{{ stats.total_predicciones }}</p>
+                    <a href="{{ url_for('admin_predicciones') }}" class="btn btn-sm btn-primary">Ver predicciones</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h6 class="card-title">Con Riesgo</h6>
+                    <p class="display-6 text-danger">{{ stats.con_riesgo }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h6 class="card-title">Sin Riesgo</h6>
+                    <p class="display-6 text-success">{{ stats.sin_riesgo }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 d-flex gap-2">
+            <a href="{{ url_for('admin_estadisticas') }}" class="btn btn-outline-primary">Ver estadísticas</a>
+            <a href="{{ url_for('admin_predicciones') }}" class="btn btn-outline-secondary">Ver todas las predicciones</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

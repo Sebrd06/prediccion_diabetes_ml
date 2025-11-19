@@ -55,10 +55,43 @@ git clone https://github.com/tu_usuario/diabetes-prediction-app.git
 cd diabetes-prediction-app
 ```
 
-2. Instala las dependencias:
+2. Instala las dependencias (recomendado: usar Python 3.11 en Windows):
+
+Opción recomendada (recrear virtualenv con Python 3.11):
+
+```powershell
+# Asegúrate de tener Python 3.11 instalado y accesible como `py -3.11`.
+cd <ruta-del-proyecto>
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
+# Ejecutar la app
+python app.py
+```
+
+Notas:
+- Si `Activate.ps1` falla por la política de ejecución, ejecuta en PowerShell como administrador:
+  `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` y luego vuelve a activar.
+
+Opción alternativa (si NO puedes cambiar la versión de Python):
+
+- Instala las "Microsoft C++ Build Tools" (requerido para compilar scikit-learn desde fuente en Windows):
+  https://visualstudio.microsoft.com/visual-cpp-build-tools/
+- Después de instalar las build tools, activa tu venv y ejecuta:
+
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
+
+Aviso: la opción alternativa es más lenta y puede ser compleja; la opción recomendada es usar Python 3.11.
 
 3. Ejecuta la app:
-python app.py  o  py app.py
+```powershell
+python app.py  # usa el python del venv activado
+# o
+py -3.11 app.py
+```
 
 4. Abre el enlace en el navegador.

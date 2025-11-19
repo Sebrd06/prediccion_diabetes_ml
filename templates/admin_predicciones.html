@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Predicciones - Admin{% endblock %}
+
+{% block extra_head %}
+<style>
+    .form-section {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .form-section h3 {
+        margin-bottom: 25px;
+        color: #333;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+    }
+    .btn-group-bottom {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>📊 Todas las Predicciones del Sistema</h2>
+            <p class="text-muted">Total: <strong>{{ predicciones|length }}</strong> predicciones</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">← Volver al Panel</a>
+        </div>
+    </div>
+
+    {% if predicciones %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>#ID</th>
+                    <th>Usuario</th>
+                    <th>Edad</th>
+                    <th>Glucosa</th>
+                    <th>IMC</th>
+                    <th>Resultado</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pred in predicciones %}
+                <tr>
+                    <td><code>{{ pred.id }}</code></td>
+                    <td>
+                        {% if pred.user_id %}
+                            <a href="#" class="text-decoration-none">
+                                {{ pred.user.username if pred.user else 'Usuario Borrado' }}
+                            </a>
+                        {% else %}
+                            <span class="badge bg-secondary">Anónimo</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ pred.age }} años</td>
+                    <td>{{ pred.glucose }} mg/dL</td>
+                    <td>{{ pred.bmi|round(1) }}</td>
+                    <td>
+                        {% if pred.result == 'Sí' %}
+                            <span class="badge bg-danger">⚠️ Riesgo</span>
+                        {% else %}
+                            <span class="badge bg-success">✓ Sin Riesgo</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ pred.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('eliminar_prediccion', pred_id=pred.id) }}" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar esta predicción?')">
+                                🗑️ Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <h5>📋 No hay predicciones en el sistema</h5>
+        <p>Las predicciones aparecerán aquí cuando los usuarios usen el formulario de predicción.</p>
+    </div>
+    {% endif %}
+
+    <!-- Formulario de Predicción -->
+    <div class="form-section">
+        <h3>🔬 Hacer una Nueva Predicción</h3>
+        <form method="POST" action="{{ url_for('predecir') }}">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="pregnancies" class="form-label">Embarazos</label>
+                    <input type="number" name="pregnancies" id="pregnancies" class="form-control" min="0" max="20" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="glucose" class="form-label">Glucosa (mg/dL)</label>
+                    <input type="number" name="glucose" id="glucose" class="form-control" min="0" max="300" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="blood_pressure" class="form-label">Presión Arterial (mmHg)</label>
+                    <input type="number" name="blood_pressure" id="blood_pressure" class="form-control" min="0" max="200" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="skin_thickness" class="form-label">Espesor de Piel (mm)</label>
+                    <input type="number" name="skin_thickness" id="skin_thickness" class="form-control" min="0" max="100" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="insulin" class="form-label">Insulina (mU/mL)</label>
+                    <input type="number" name="insulin" id="insulin" class="form-control" min="0" max="900" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="bmi" class="form-label">IMC (Índice de Masa Corporal)</label>
+                    <input type="number" step="0.1" name="bmi" id="bmi" class="form-control" min="0" max="100" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="diabetes_pedigree_function" class="form-label">Herencia Genética</label>
+                    <input type="number" step="0.001" name="diabetes_pedigree_function" id="diabetes_pedigree_function" class="form-control" min="0" max="3" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="age" class="form-label">Edad (años)</label>
+                    <input type="number" name="age" id="age" class="form-control" min="1" max="150" required>
+                </div>
+            </div>
+
+            <div class="btn-group-bottom">
+                <button type="submit" class="btn btn-primary btn-lg">🔍 Realizar Predicción</button>
+                <a href="{{ url_for('inicio') }}" class="btn btn-secondary btn-lg">← Volver a Inicio</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
